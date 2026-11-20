@@ -1,0 +1,141 @@
+@page
+@model ChatModel
+@using System.Globalization
+@{
+    ViewData["Title"] = "Chat";
+    var cultura = CultureInfo.GetCultureInfo("es-NI");
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="alert alert-warning">@Model.Error</div>
+    <a asp-page="/Chat" class="btn btn-success">Ver mis conversaciones</a>
+}
+else if (Model.Producto != null)
+{
+    <a asp-page="/Chat" class="btn btn-link ps-0 mb-3 text-decoration-none">&larr; Todas las conversaciones</a>
+
+    <div class="tm-chat">
+        <div class="tm-chat-head card mb-3">
+            <img src="@(string.IsNullOrWhiteSpace(Model.Producto.ImagenUrl) ? "/img/sin-imagen.svg" : Model.Producto.ImagenUrl)"
+                 alt="@Model.Producto.Titulo" />
+            <div class="flex-grow-1">
+                <span class="tm-eyebrow">Chat directo</span>
+                <h1 class="h5 mb-1">@Model.Producto.Titulo</h1>
+                <small class="text-muted">
+                    C$ @Model.Producto.PrecioCordobas.ToString("N2", cultura) ·
+                    @(Model.MiId == Model.VendedorId ? "Eres el vendedor" : "Eres el comprador")
+                </small>
+            </div>
+            <a asp-page="/Producto" asp-route-id="@Model.Producto.Id" class="btn btn-sm btn-outline-success">Ver producto</a>
+        </div>
+
+        <div class="tm-chat-thread card" id="tmThread">
+            @if (Model.Mensajes.Count == 0)
+            {
+                <div class="tm-chat-inicio">👋 Inicia la conversación. Pregunta por disponibilidad, entrega o precio.</div>
+            }
+            @foreach (var m in Model.Mensajes)
+            {
+                <div class="tm-bubble @(m.RemitenteId == Model.MiId ? "mio" : "otro")">
+                    <div class="tm-bubble-texto">@m.Contenido</div>
+                    <small>@(m.FechaEnvio.Length >= 16 ? m.FechaEnvio.Substring(11, 5) : m.FechaEnvio) @(m.Leido ? "✓" : "")</small>
+                </div>
+            }
+        </div>
+
+        <form method="post" asp-page-handler="Enviar" class="tm-chat-form">
+            <input type="hidden" name="producto" value="@Model.ProductoId" />
+            <input type="hidden" name="comprador" value="@Model.CompradorId" />
+            <input type="hidden" name="vendedor" value="@Model.VendedorId" />
+            <input type="text" name="contenido" maxlength="2000" required autocomplete="off"
+                   placeholder="Escribe tu mensaje..." class="form-control form-control-lg" />
+            <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+        </form>
+        <p class="form-text text-center">Mensajes privados entre el vendedor y el comprador de este producto.</p>
+    </div>
+}
+else
+{
+    <div class="tm-chat-list">
+        <span class="tm-eyebrow">Mensajería</span>
+        <h1 class="h2 mb-1">💬 Mis conversaciones</h1>
+        <p class="text-muted mb-4">Habla directamente con el vendedor o con el comprador de un producto.</p>
+
+        @if (Model.Conversaciones.Count == 0)
+        {
+            <div class="tm-empty">
+                <div class="tm-empty-icon">💬</div>
+                <h3>Aún no hay conversaciones</h3>
+                <p>Abre un producto del catálogo y pulsa <strong>Chat</strong> para escribirle al vendedor.</p>
+                <a asp-page="/Index" class="btn btn-success">Ir al catálogo</a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-3">
+                @foreach (var c in Model.Conversaciones)
+                {
+                    <div class="col-md-6">
+                        <a asp-page="/Chat" asp-route-producto="@c.ProductoId" asp-route-comprador="@c.CompradorId"
+                           class="tm-chat-item card h-100">
+                            <img src="@c.Imagen" alt="@c.Titulo" />
+                            <div class="flex-grow-1">
+                                <strong>@c.Titulo</strong>
+                                <p class="mb-0 text-muted small">@c.Ultimo</p>
+                            </div>
+                            @if (c.SinLeer > 0)
+                            {
+                                <span class="tm-chat-unread">@c.SinLeer</span>
+                            }
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+
+@section Scripts {
+    @if (Model.Producto != null)
+    {
+        <script>
+            (function () {
+                var hilo = document.getElementById('tmThread');
+                if (!hilo) return;
+                var yo = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.MiId));
+                var producto = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ProductoId));
+                var comprador = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CompradorId));
+                var ultimo = '@(Model.Mensajes.Count > 0 ? Model.Mensajes[Model.Mensajes.Count - 1].Id : "")';
+
+                function agregar(m) {
+                    var b = document.createElement('div');
+                    b.className = 'tm-bubble ' + (m.remitente === yo ? 'mio' : 'otro');
+                    var texto = document.createElement('div');
+                    texto.className = 'tm-bubble-texto';
+                    texto.textContent = m.contenido;
+                    var hora = document.createElement('small');
+                    hora.textContent = (m.fecha || '').substring(11, 16) + (m.leido ? ' ✓' : '');
+                    b.appendChild(texto); b.appendChild(hora);
+                    hilo.appendChild(b);
+                    hilo.scrollTop = hilo.scrollHeight;
+                }
+
+                hilo.scrollTop = hilo.scrollHeight;
+                setInterval(async function () {
+                    try {
+                        var url = '?handler=Mensajes&producto=' + encodeURIComponent(producto) +
+                                  '&comprador=' + encodeURIComponent(comprador);
+                        var r = await fetch(url, { headers: { 'X-Requested-With': 'fetch' } });
+                        if (!r.ok) return;
+                        var j = await r.json();
+                        var lista = j.mensajes || [];
+                        if (!lista.length) return;
+                        var nuevo = lista.filter(function (m) { return m.id !== ultimo; });
+                        nuevo.forEach(function (m) { agregar(m); ultimo = m.id; });
+                    } catch (e) { /* sin conexión: se reintenta en el próximo sondeo */ }
+                }, 4000);
+            })();
+        </script>
+    }
+}

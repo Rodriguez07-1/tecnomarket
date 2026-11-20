@@ -1,0 +1,44 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Iniciar sesión";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="text-center mb-4">
+            <span class="tm-page-icon mx-auto" style="width:64px;height:64px;font-size:1.8rem">🔐</span>
+            <h1 class="h3 mt-3 mb-1">Bienvenido de nuevo</h1>
+            <p class="text-muted small mb-0">Usá la misma cuenta de la app TecnoMarket.</p>
+        </div>
+
+        <div class="card tm-panel">
+            <div class="card-body p-4">
+                @if (!string.IsNullOrWhiteSpace(Model.Error))
+                {
+                    <div class="alert alert-warning">@Model.Error</div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Correo</label>
+                        <input asp-for="Email" class="form-control" type="email" placeholder="tu@correo.com" required />
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label">Contraseña</label>
+                        <input asp-for="Password" class="form-control" type="password" placeholder="••••••••" required />
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100">Entrar</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <a asp-page="/Index" class="btn btn-link btn-sm text-decoration-none">&larr; Volver al catálogo</a>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-muted small mt-3 mb-0">
+            ¿No tenés cuenta? Publicá desde la app; la Web usa el mismo login.
+        </p>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Catálogo";
+    var cultura = CultureInfo.GetCultureInfo("es-NI");
+    string Precio(decimal valor) => "C$ " + valor.ToString("N2", cultura);
+}
+
+<section class="tm-hero">
+    <span class="tm-eyebrow text-white-50">Bienvenido a TecnoMarket</span>
+    <h1>Tecnología para tu día a día</h1>
+    <p>Encontrá tecnología, hogar y más a precios en córdobas. Publicá, comprá y seguí tus pedidos desde la web o desde la app.</p>
+    <div class="tm-hero-chips">
+        <span class="tm-chip">📱 App + Web</span>
+        <span class="tm-chip">🔗 Una sola API C#</span>
+        <span class="tm-chip">💵 Precios en C$</span>
+    </div>
+</section>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-9 col-lg-10">
+        <input asp-for="Busqueda" class="form-control form-control-lg" placeholder="🔍 Buscar producto, marca o categoría..." />
+    </div>
+    <div class="col-md-3 col-lg-2">
+        <button type="submit" class="btn btn-success btn-lg w-100">Buscar</button>
+    </div>
+</form>
+
+<div class="mb-4 d-flex flex-wrap align-items-center gap-2">
+    <span class="tm-eyebrow me-1">Categorías</span>
+    <a asp-page="/Index" asp-route-busqueda="@Model.Busqueda"
+       class="btn btn-sm @(Model.CategoriaId == null ? "btn-success" : "btn-outline-success")">
+        Todas
+    </a>
+    @foreach (var categoria in Model.Categorias)
+    {
+        <a asp-page="/Index" asp-route-categoriaId="@categoria.Id" asp-route-busqueda="@Model.Busqueda"
+           class="btn btn-sm @(Model.CategoriaId == categoria.Id ? "btn-success" : "btn-outline-success")">
+            @categoria.Nombre
+        </a>
+    }
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="alert alert-warning">
+        <strong>No se pudieron cargar los datos.</strong><br />
+        @Model.Error
+    </div>
+}
+
+@if (Model.Productos.Count == 0 && string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="tm-empty">
+        <div class="tm-empty-icon">🔎</div>
+        <h3>No encontramos productos</h3>
+        <p>Probá con otra búsqueda o mirá todas las categorías.</p>
+        <a asp-page="/Index" class="btn btn-success">Ver todo el catálogo</a>
+    </div>
+}
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+    @foreach (var item in Model.Productos)
+    {
+        <div class="col">
+            <div class="card h-100 tm-card shadow-sm">
+                <div class="tm-img-wrap">
+                    <img class="card-img-top tm-img" src="@(string.IsNullOrWhiteSpace(item.Producto.ImagenUrl) ? "/img/sin-imagen.svg" : item.Producto.ImagenUrl)"
+                         alt="@item.Producto.Titulo" loading="lazy" />
+                    <span class="badge tm-badge-estado @(item.Producto.Estado == "Disponible" ? "bg-success" : "bg-warning text-dark")">
+                        @item.Producto.Estado
+                    </span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <span class="tm-eyebrow">@item.CategoriaNombre</span>
+                    <h5 class="card-title h6 mt-1">@item.Producto.Titulo</h5>
+                    <p class="tm-precio mb-2">@Precio(item.Producto.PrecioCordobas)</p>
+                    <p class="mb-2">
+                        <span class="badge bg-secondary">@item.Producto.Condicion</span>
+                        <span class="badge bg-light text-dark">Stock: @item.Producto.Stock</span>
+                    </p>
+                    <p class="tm-seller mt-auto mb-2">👤 @item.VendedorNombre</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-page="/Producto" asp-route-id="@item.Producto.Id" class="btn btn-outline-primary btn-sm">
+                            Ver detalle
+                        </a>
+                        @if (item.Producto.Estado == "Disponible" && item.Producto.Stock > 0)
+                        {
+                            <form method="post" asp-page-handler="Agregar">
+                                <input type="hidden" name="id" value="@item.Producto.Id" />
+                                <button type="submit" class="btn btn-success btn-sm">🛒 Agregar</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

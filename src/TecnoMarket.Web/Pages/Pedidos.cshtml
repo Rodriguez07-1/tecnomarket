@@ -1,0 +1,66 @@
+@page
+@model PedidosModel
+@{
+    ViewData["Title"] = "Mis pedidos";
+    var cultura = CultureInfo.GetCultureInfo("es-NI");
+}
+
+<div class="tm-page-head">
+    <div class="d-flex align-items-center gap-3">
+        <span class="tm-page-icon">📦</span>
+        <div>
+            <h1>@(Model.EsAdmin ? "Todos los pedidos" : "Mis pedidos")</h1>
+            <p>Compras registradas en la misma base de datos de la app.</p>
+        </div>
+    </div>
+    <a asp-page="/Index" class="btn btn-outline-success btn-sm">Seguir comprando</a>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="alert alert-warning">@Model.Error</div>
+}
+
+<div class="card tm-panel">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0 align-middle">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th class="text-end">Cant.</th>
+                    <th class="text-end">Precio unit.</th>
+                    <th class="text-end">Total</th>
+                    <th>Entrega</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pedido in Model.Pedidos)
+                {
+                    <tr>
+                        <td class="fw-semibold">@pedido.ProductoTitulo</td>
+                        <td class="text-end">@pedido.Cantidad</td>
+                        <td class="text-end">C$ @pedido.PrecioUnitarioCordobas.ToString("N2", cultura)</td>
+                        <td class="text-end fw-bold tm-precio">C$ @pedido.TotalCordobas.ToString("N2", cultura)</td>
+                        <td class="small text-muted">@pedido.ModalidadEntrega</td>
+                        <td><span class="badge bg-success">@pedido.Estado</span></td>
+                        <td class="small text-muted">@pedido.FechaPedido</td>
+                    </tr>
+                }
+                @if (Model.Pedidos.Count == 0)
+                {
+                    <tr>
+                        <td colspan="7">
+                            <div class="tm-empty border-0 py-4">
+                                <div class="tm-empty-icon">📭</div>
+                                <h3>Todavía no hay pedidos</h3>
+                                <p>Cuando confirmes una compra vas a ver el detalle acá.</p>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

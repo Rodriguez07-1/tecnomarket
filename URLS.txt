@@ -1,0 +1,27 @@
+TECNOMARKET EN LA NUBE
+
+API     : https://stomach-salvador-receivers-acc.trycloudflare.com
+SWAGGER : https://stomach-salvador-receivers-acc.trycloudflare.com/swagger
+WEB     : https://underlying-authentication-wichita-manager.trycloudflare.com
+ARQ.    : https://underlying-authentication-wichita-manager.trycloudflare.com/Arquitectura
+CHAT    : https://underlying-authentication-wichita-manager.trycloudflare.com/Chat
+
+Local:
+  API     : http://localhost:5204
+  Swagger : http://localhost:5204/swagger
+  Web     : http://localhost:5000
+  Arq.    : http://localhost:5000/Arquitectura
+  Chat    : http://localhost:5000/Chat
+
+Nota: las URLs de Cloudflare quick tunnel cambian en cada reinicio.
+Para obtener otras nuevas, ejecutar:
+  powershell -ExecutionPolicy Bypass -File .\iniciar_nube.ps1
+
+Si cambian, actualizar:
+  1) app\src\main\java\com\tecnomarket\app\data\ApiConfig.kt  -> API_BASE_URL
+  2) src\TecnoMarket.Web\appsettings.json                     -> Api:BaseUrl
+
+Estado: API y WEB en ejecucion en segundo plano (20/11/2026).
+Swagger documenta 29 rutas (incluye /rest/v1/mensajes) y permite probarlas pegando un JWT.
+El CSS se incrusta en el HTML5: el diseño sobrevive al proxy que descarta .css externos.
+Chat: misma BD (public.mensajes), sin SignalR; Web y Android usan sondeo ligero de 4 s.

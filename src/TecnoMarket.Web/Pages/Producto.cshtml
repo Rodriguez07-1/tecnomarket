@@ -1,0 +1,83 @@
+@page
+@model ProductoModel
+@{
+    ViewData["Title"] = Model.Item?.Producto.Titulo ?? "Producto";
+    var cultura = CultureInfo.GetCultureInfo("es-NI");
+}
+
+<a asp-page="/Index" class="btn btn-link ps-0 mb-3 text-decoration-none">&larr; Volver al catálogo</a>
+
+@if (!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="alert alert-warning">@Model.Error</div>
+}
+else if (Model.Item == null)
+{
+    <div class="tm-empty">
+        <div class="tm-empty-icon">📦</div>
+        <h3>Producto no encontrado</h3>
+        <p>Puede que ya no esté disponible.</p>
+        <a asp-page="/Index" class="btn btn-success">Ir al catálogo</a>
+    </div>
+}
+else
+{
+    var p = Model.Item.Producto;
+    <div class="row g-4 align-items-start">
+        <div class="col-md-6">
+            <img class="tm-detalle-img"
+                 src="@(string.IsNullOrWhiteSpace(p.ImagenUrl) ? "/img/sin-imagen.svg" : p.ImagenUrl)"
+                 alt="@p.Titulo" />
+        </div>
+        <div class="col-md-6">
+            <span class="tm-eyebrow">@Model.Item.CategoriaNombre</span>
+            <h1 class="h2 mt-1 mb-2">@p.Titulo</h1>
+            <p class="tm-precio mb-3" style="font-size:1.9rem">C$ @p.PrecioCordobas.ToString("N2", cultura)</p>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                <span class="badge bg-secondary">@p.Condicion</span>
+                <span class="badge @(p.Estado == "Disponible" ? "bg-success" : "bg-warning text-dark")">@p.Estado</span>
+                <span class="badge bg-light text-dark">Stock: @p.Stock</span>
+            </div>
+
+            <div class="tm-panel card mb-3">
+                <div class="card-body">
+                    <h2 class="h6 tm-eyebrow">Descripción</h2>
+                    <p class="mb-3">@p.Descripcion</p>
+                    <h2 class="h6 tm-eyebrow">Entrega</h2>
+                    <p class="mb-0">@p.ModalidadEntrega</p>
+                </div>
+            </div>
+
+            <p class="tm-seller mb-3">Publicado por <strong>@Model.Item.VendedorNombre</strong></p>
+
+            <div class="d-flex flex-wrap gap-2">
+                @if (p.Estado == "Disponible" && p.Stock > 0)
+                {
+                    <form method="post" asp-page-handler="Agregar">
+                        <input type="hidden" name="id" value="@p.Id" />
+                        <button type="submit" class="btn btn-success btn-lg">🛒 Agregar al carrito</button>
+                    </form>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-secondary btn-lg" disabled>No disponible</button>
+                }
+                <form method="post" asp-page-handler="Favorito">
+                    <input type="hidden" name="id" value="@p.Id" />
+                    <button type="submit" class="btn btn-outline-danger btn-lg">
+                        @(Model.EsFavorito ? "❤️ En favoritos" : "🤍 Favorito")
+                    </button>
+                </form>
+                @if (Model.EsVendedor)
+                {
+                    <a class="btn btn-outline-success btn-lg" asp-page="/Chat">💬 Ver conversaciones</a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-success btn-lg" asp-page="/Chat" asp-route-producto="@p.Id">💬 Chat</a>
+                }
+            </div>
+        </div>
+    </div>
+}

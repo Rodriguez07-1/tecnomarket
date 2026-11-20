@@ -1,0 +1,135 @@
+@page
+@model PublicarModel
+@{
+    ViewData["Title"] = "Publicar producto";
+    var cultura = CultureInfo.GetCultureInfo("es-NI");
+}
+
+<div class="tm-page-head">
+    <div class="d-flex align-items-center gap-3">
+        <span class="tm-page-icon">📝</span>
+        <div>
+            <h1>Publicar un producto</h1>
+            <p>Se publica con estado <span class="badge bg-warning text-dark">Pendiente</span>; el administrador lo aprueba después.</p>
+        </div>
+    </div>
+    <a asp-page="/Arquitectura" class="btn btn-outline-success btn-sm">🧩 ¿Cómo funciona?</a>
+</div>
+
+@if (TempData["Mensaje"] is string mensaje)
+{
+    <div class="alert alert-success">@mensaje</div>
+}
+@if (TempData["Error"] is string errorTemp)
+{
+    <div class="alert alert-warning">@errorTemp</div>
+}
+@if (!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="alert alert-warning">@Model.Error</div>
+}
+
+<div class="row g-4 align-items-start">
+    <div class="col-lg-7">
+        <div class="card tm-panel">
+            <div class="card-header">Datos del producto</div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label asp-for="Titulo" class="form-label">Título</label>
+                        <input asp-for="Titulo" class="form-control" placeholder="Ej: Audífonos Bluetooth" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Descripcion" class="form-label">Descripción</label>
+                        <textarea asp-for="Descripcion" class="form-control" rows="3" placeholder="Detalles del producto"></textarea>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label asp-for="Precio" class="form-label">Precio (C$)</label>
+                            <input asp-for="Precio" class="form-control" inputmode="decimal" placeholder="0.00" />
+                        </div>
+                        <div class="col-sm-6">
+                            <label asp-for="Stock" class="form-label">Stock</label>
+                            <input asp-for="Stock" class="form-control" inputmode="numeric" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CategoriaId" class="form-label">Categoría</label>
+                        <select asp-for="CategoriaId" class="form-select">
+                            <option value="0">Seleccioná una categoría</option>
+                            @foreach (var categoria in Model.Categorias)
+                            {
+                                <option value="@categoria.Id">@categoria.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label asp-for="Condicion" class="form-label">Condición</label>
+                            <select asp-for="Condicion" class="form-select">
+                                @foreach (var condicion in PublicarModel.Condiciones)
+                                {
+                                    <option value="@condicion">@condicion</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label asp-for="ModalidadEntrega" class="form-label">Entrega</label>
+                            <select asp-for="ModalidadEntrega" class="form-select">
+                                @foreach (var entrega in PublicarModel.Entregas)
+                                {
+                                    <option value="@entrega">@entrega</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Imagen" class="form-label">Foto (opcional)</label>
+                        <input asp-for="Imagen" type="file" accept="image/*" class="form-control" />
+                        <div class="form-text">PNG, JPG o WebP. Máximo 10 MB. Se guarda en el bucket público <code>productos</code>.</div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100">🚀 Publicar producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card tm-panel">
+            <div class="card-header">Mis publicaciones (@Model.MisProductos.Count)</div>
+            <div class="table-responsive">
+                <table class="table table-sm mb-0 align-middle">
+                    <thead>
+                        <tr><th>Producto</th><th class="text-end">Precio</th><th>Estado</th></tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var producto in Model.MisProductos)
+                        {
+                            <tr>
+                                <td class="small">@producto.Titulo</td>
+                                <td class="text-end small">C$ @producto.PrecioCordobas.ToString("N2", cultura)</td>
+                                <td>
+                                    <span class="badge @(producto.Estado == "Disponible" ? "bg-success" : producto.Estado == "Pendiente" ? "bg-warning text-dark" : producto.Estado == "Rechazado" ? "bg-danger" : "bg-secondary")">
+                                        @producto.Estado
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.MisProductos.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="3">
+                                    <div class="tm-empty border-0 py-4">
+                                        <div class="tm-empty-icon">📝</div>
+                                        <h3>Sin publicaciones</h3>
+                                        <p>Tu primera publicación va a aparecer acá.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

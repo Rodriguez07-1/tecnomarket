@@ -1,0 +1,168 @@
+@page
+@model TecnoMarket.Web.Pages.Admin.AnaliticaModel
+@using System.Globalization
+@{
+    ViewData["Title"] = "Analítica";
+    var cultura = CultureInfo.GetCultureInfo("es-NI");
+    string Precio(decimal valor) => "C$ " + valor.ToString("N2", cultura);
+    string Entero(int valor) => valor.ToString("N0", cultura);
+
+    var maxCategoria = Model.VentasCategoria.Count == 0
+        ? 1m : Model.VentasCategoria.Max(x => x.TotalCordobas);
+    var maxMes = Model.VentasMes.Count == 0
+        ? 1m : Model.VentasMes.Max(x => x.TotalCordobas);
+    if (maxCategoria <= 0) maxCategoria = 1;
+    if (maxMes <= 0) maxMes = 1;
+}
+
+<div class="tm-page-head">
+    <div class="d-flex align-items-start gap-3">
+        <span class="tm-page-icon">📊</span>
+        <div>
+            <h1>Analítica del data warehouse</h1>
+            <p>
+                Datos consolidados de pedidos, publicaciones y favoritos.
+                @if (Model.Resumen?.UltimaCarga is { } carga)
+                {
+                    <text>Última carga: <strong>@carga.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</strong>.</text>
+                }
+            </p>
+        </div>
+    </div>
+    <form method="post" asp-page-handler="Actualizar">
+        <button type="submit" class="btn btn-success">🔄 Actualizar datos</button>
+    </form>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.Mensaje))
+{
+    <div class="alert @(Model.Mensaje.StartsWith("No se pudo") ? "alert-warning" : "alert-success")">
+        @Model.Mensaje
+    </div>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="alert alert-warning"><strong>No se pudieron cargar los datos.</strong><br />@Model.Error</div>
+}
+
+@if (Model.Resumen is { } r)
+{
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-4">
+        <div class="col"><div class="tm-kpi"><span class="tm-kpi-icon">💵</span><span class="tm-kpi-valor">@Precio(r.VentasTotales)</span><span class="tm-kpi-label">Ventas totales</span></div></div>
+        <div class="col"><div class="tm-kpi"><span class="tm-kpi-icon">🧾</span><span class="tm-kpi-valor">@Entero(r.TotalPedidos)</span><span class="tm-kpi-label">Pedidos</span></div></div>
+        <div class="col"><div class="tm-kpi"><span class="tm-kpi-icon">📝</span><span class="tm-kpi-valor">@Entero(r.TotalPublicaciones)</span><span class="tm-kpi-label">Publicaciones</span></div></div>
+        <div class="col"><div class="tm-kpi"><span class="tm-kpi-icon">❤️</span><span class="tm-kpi-valor">@Entero(r.TotalFavoritos)</span><span class="tm-kpi-label">Favoritos</span></div></div>
+        <div class="col"><div class="tm-kpi"><span class="tm-kpi-icon">👥</span><span class="tm-kpi-valor">@Entero(r.TotalUsuarios)</span><span class="tm-kpi-label">Usuarios</span></div></div>
+        <div class="col"><div class="tm-kpi"><span class="tm-kpi-icon">📦</span><span class="tm-kpi-valor">@Entero(r.TotalProductos)</span><span class="tm-kpi-label">Productos</span></div></div>
+    </div>
+}
+
+<div class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card tm-panel h-100">
+            <div class="card-header">Ventas por categoría</div>
+            <div class="card-body">
+                @if (Model.VentasCategoria.Count == 0)
+                {
+                    <p class="text-muted mb-0">Sin datos.</p>
+                }
+                else
+                {
+                    @foreach (var item in Model.VentasCategoria)
+                    {
+                        var ancho = Math.Max(2, (double)(item.TotalCordobas / maxCategoria) * 100);
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span class="fw-semibold">@item.Categoria</span>
+                                <span class="tm-precio">@Precio(item.TotalCordobas)</span>
+                            </div>
+                            <div class="tm-bar-track"><div class="tm-bar-fill" style="width:@ancho.ToString("0.0", CultureInfo.InvariantCulture)%"></div></div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card tm-panel h-100">
+            <div class="card-header">Ventas por mes</div>
+            <div class="card-body">
+                @if (Model.VentasMes.Count == 0)
+                {
+                    <p class="text-muted mb-0">Sin datos.</p>
+                }
+                else
+                {
+                    <div class="tm-chart">
+                        @foreach (var item in Model.VentasMes)
+                        {
+                            var alto = Math.Max(3, (double)(item.TotalCordobas / maxMes) * 100);
+                            <div class="tm-chart-col" title="@item.NombreMes @item.Anio: @Precio(item.TotalCordobas)">
+                                <div class="tm-chart-bar" style="height:@alto.ToString("0.0", CultureInfo.InvariantCulture)%"></div>
+                                <span class="tm-chart-label">@item.NombreMes.Trim().Substring(0, Math.Min(3, item.NombreMes.Trim().Length)) @item.Anio.ToString().Substring(2)</span>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tm-panel mb-4">
+    <div class="card-header">Productos más populares</div>
+    <div class="table-responsive">
+        <table class="table table-hover mb-0 align-middle">
+            <thead>
+                <tr><th>Producto</th><th>Categoría</th><th class="text-end">Favoritos</th><th class="text-end">Pedidos</th><th class="text-end">Ventas</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ProductosPopulares)
+                {
+                    <tr>
+                        <td class="fw-semibold">@item.Titulo</td>
+                        <td class="text-muted">@item.Categoria</td>
+                        <td class="text-end">@item.Favoritos</td>
+                        <td class="text-end">@item.Pedidos</td>
+                        <td class="text-end fw-semibold tm-precio">@Precio(item.TotalCordobas)</td>
+                    </tr>
+                }
+                @if (Model.ProductosPopulares.Count == 0)
+                {
+                    <tr><td colspan="5" class="text-center text-muted py-4">Sin datos.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card tm-panel">
+    <div class="card-header">Bitácora del ETL</div>
+    <div class="table-responsive">
+        <table class="table table-sm table-hover mb-0 align-middle">
+            <thead>
+                <tr><th>Inicio</th><th>Fin</th><th class="text-end">Pedidos</th><th class="text-end">Favoritos</th><th class="text-end">Publicaciones</th><th class="text-end">Usuarios</th><th>Estado</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Bitacora)
+                {
+                    <tr>
+                        <td>@item.Inicio.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</td>
+                        <td>@item.Fin.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</td>
+                        <td class="text-end">@item.Pedidos</td>
+                        <td class="text-end">@item.Favoritos</td>
+                        <td class="text-end">@item.Publicaciones</td>
+                        <td class="text-end">@item.Usuarios</td>
+                        <td><span class="badge @(item.Estado == "OK" ? "bg-success" : "bg-danger")">@item.Estado</span></td>
+                    </tr>
+                }
+                @if (Model.Bitacora.Count == 0)
+                {
+                    <tr><td colspan="7" class="text-center text-muted py-4">Sin cargas registradas.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TecnoMarket.Api/TecnoMarket.Api.csproj" />
+    <Project Path="src/TecnoMarket.Shared/TecnoMarket.Shared.csproj" />
+    <Project Path="src/TecnoMarket.Web/TecnoMarket.Web.csproj" />
+  </Folder>
+</Solution>

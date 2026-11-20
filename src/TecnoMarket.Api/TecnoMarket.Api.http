@@ -1,0 +1,11 @@
+@TecnoMarket.Api_HostAddress = http://localhost:5204
+
+GET {{TecnoMarket.Api_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+
+GET {{TecnoMarket.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

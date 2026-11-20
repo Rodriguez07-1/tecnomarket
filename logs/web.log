@@ -1,0 +1,868 @@
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5000
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\Ruben\Documents\TecnoMarket_Backend\src\TecnoMarket.Web
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 542.1012ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 551.1729ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 353.8443ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 353.9935ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 264.4385ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 264.5401ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 255.429ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 255.5884ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 231.2607ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 231.3686ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 243.801ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 243.9249ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 308.2307ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 308.3447ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 234.5192ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 234.7385ms - 200
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.ArgumentNullException: Value cannot be null. (Parameter 'stringToEscape')
+         at System.ArgumentNullException.Throw(String paramName)
+         at System.ArgumentNullException.ThrowIfNull(Object argument, String paramName)
+         at System.UriHelper.EscapeString(String stringToEscape, Boolean checkExistingEscaped, SearchValues`1 noEscape)
+         at TecnoMarket.Web.Servicios.ApiCliente.ProductoAsync(String id) in C:\Users\Ruben\Documents\TecnoMarket_Backend\src\TecnoMarket.Web\Servicios\ApiCliente.cs:line 50
+         at TecnoMarket.Web.Pages.ProductoModel.OnGetAsync(String id) in C:\Users\Ruben\Documents\TecnoMarket_Backend\src\TecnoMarket.Web\Pages\Producto.cshtml.cs:line 19
+         at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.ExecutorFactory.NonGenericTaskHandlerMethod.Execute(Object receiver, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeHandlerMethodAsync()
+         at System.Runtime.CompilerServices.AsyncHelpers.TransparentAwait(Task task)
+         at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeNextPageFilterAsync()
+         at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Rethrow(PageHandlerExecutedContext context)
+         at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeInnerFilterAsync()
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 331.7959ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 331.914ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 495.6121ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 495.723ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 270.6493ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 270.739ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 244.1667ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 244.2711ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 237.1605ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 237.2185ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 254.2784ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 254.5018ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 293.2717ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 293.4953ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 263.9786ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 264.0835ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 235.3839ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 235.6205ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 270.4165ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 270.539ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 356.7692ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 356.8702ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 344.4007ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 344.5244ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 230.691ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 230.8428ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 228.9184ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 229.0169ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 227.1241ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 227.2151ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 253.3071ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 253.437ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 250.2871ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 250.374ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/b7fd4de9-d0ac-4139-bc77-705d048dc43c
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/b7fd4de9-d0ac-4139-bc77-705d048dc43c
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 607.1984ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 607.3015ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 340.4446ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 340.5547ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 245.8768ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 245.9928ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 386.5166ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 386.6429ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 225.3136ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 225.3914ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 342.1684ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 342.2885ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 227.7544ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 227.8509ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 221.4839ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 221.5972ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 219.1365ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 219.2156ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 242.1766ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 242.2676ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 267.4274ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 267.4755ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 225.1912ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 225.2859ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 264.5083ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 264.5872ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 281.2872ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 281.3651ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 232.4141ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 232.4546ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/1ce05446-33b6-4102-800d-03192f529cdd
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/1ce05446-33b6-4102-800d-03192f529cdd
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 622.9365ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 622.9994ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 245.9858ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 246.0689ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/1ce05446-33b6-4102-800d-03192f529cdd
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/1ce05446-33b6-4102-800d-03192f529cdd
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 507.7653ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 507.8328ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 297.0874ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 297.1858ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 247.8703ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 247.9699ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f456fbff-b1bc-489b-82a0-969f4626e502
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f456fbff-b1bc-489b-82a0-969f4626e502
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 536.1667ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 536.2354ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 230.6816ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 230.8ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f456fbff-b1bc-489b-82a0-969f4626e502
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f456fbff-b1bc-489b-82a0-969f4626e502
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 450.4095ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 450.4425ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 320.8724ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 320.9486ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f301c84f-4d65-440f-9f90-44136651b604
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f301c84f-4d65-440f-9f90-44136651b604
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 602.7451ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 602.8121ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 369.7544ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 369.8454ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f301c84f-4d65-440f-9f90-44136651b604
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/f301c84f-4d65-440f-9f90-44136651b604
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 487.0465ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 487.1041ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/fe85abea-11ef-4c5d-b24e-ce15c47959ae
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/fe85abea-11ef-4c5d-b24e-ce15c47959ae
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 545.4037ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 545.4832ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 412.4713ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 412.5726ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 355.9275ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 356.0239ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 257.0602ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 257.232ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 329.7649ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 329.8355ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 346.8536ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 346.9422ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/fe85abea-11ef-4c5d-b24e-ce15c47959ae
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/fe85abea-11ef-4c5d-b24e-ce15c47959ae
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 508.3512ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 508.4443ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 278.0944ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 278.1507ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/fe85abea-11ef-4c5d-b24e-ce15c47959ae
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos/fe85abea-11ef-4c5d-b24e-ce15c47959ae
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 451.6174ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 451.6857ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 332.1112ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 332.1608ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 260.2772ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 260.3264ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 283.4946ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 283.5571ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request PATCH https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 241.0579ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 241.1452ms - 204
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 353.7874ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 353.8465ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 562.7035ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 562.7632ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 486.3427ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 486.4064ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 355.4847ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 355.5164ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 387.8669ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 387.9163ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request PUT https://stomach-salvador-receivers-acc.trycloudflare.com/storage/v1/object/productos/7003aef0-f0f4-4bda-87bb-1dcf8ed0d2b5/3f4065d3f82145428c4a22451128527e.png
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request PUT https://stomach-salvador-receivers-acc.trycloudflare.com/storage/v1/object/productos/7003aef0-f0f4-4bda-87bb-1dcf8ed0d2b5/3f4065d3f82145428c4a22451128527e.png
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 606.935ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 606.9905ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request POST https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 225.3566ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 225.4083ms - 201
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 233.8421ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 233.8984ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 254.4891ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 254.5636ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 669.6254ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 669.6708ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 625.331ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 625.4023ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 359.9308ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 359.9778ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 339.0793ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 339.1461ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 284.4973ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 284.5343ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 394.6828ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 394.7894ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 379.8549ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 379.9045ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 323.154ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 323.2089ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 302.7557ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 302.8299ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 232.4535ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 232.5189ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_resumen?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_resumen?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 425.7318ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 425.7934ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_categoria?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_categoria?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 356.6735ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 356.7288ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_productos_populares?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_productos_populares?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 335.2155ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 335.3117ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_mes?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_mes?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 313.3905ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 313.4467ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_etl_bitacora?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_etl_bitacora?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 347.3404ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 347.3987ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 561.5983ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 561.7122ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/productos
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 618.2869ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 618.3725ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/favoritos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 242.825ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 242.8766ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 356.819ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 356.8672ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 286.344ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 286.4044ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 352.0172ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 352.1364ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 337.7536ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 337.8152ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/productos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 347.7778ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 347.8083ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/pedidos?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 236.6037ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 236.6336ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/api/catalogo/categorias
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 298.2804ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 298.3362ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_resumen?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_resumen?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 390.4231ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 390.4765ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_categoria?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_categoria?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 363.5137ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 363.6316ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_productos_populares?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_productos_populares?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 374.2989ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 374.4247ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_mes?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_ventas_mes?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 350.7636ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 351.0673ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[100]
+      Start processing HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_etl_bitacora?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[100]
+      Sending HTTP request GET https://stomach-salvador-receivers-acc.trycloudflare.com/rest/v1/vw_dw_etl_bitacora?*
+info: System.Net.Http.HttpClient.ApiCliente.ClientHandler[101]
+      Received HTTP response headers after 350.1972ms - 200
+info: System.Net.Http.HttpClient.ApiCliente.LogicalHandler[101]
+      End processing HTTP request after 350.2951ms - 200

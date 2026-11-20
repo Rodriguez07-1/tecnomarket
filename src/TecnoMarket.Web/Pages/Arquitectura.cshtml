@@ -1,0 +1,126 @@
+@page
+@{
+    ViewData["Title"] = "Arquitectura";
+}
+
+<section class="tm-hero">
+    <span class="tm-eyebrow text-white-50">Documentación del proyecto</span>
+    <h1>Una sola API, dos clientes</h1>
+    <p>Android y Web dejaron de ser sistemas separados. Los dos consumen el mismo servicio C# y comparten la base de datos de Supabase que ya existía.</p>
+    <div class="tm-hero-chips">
+        <span class="tm-chip">C# / .NET 11</span>
+        <span class="tm-chip">Kotlin + Compose</span>
+        <span class="tm-chip">Razor Pages</span>
+        <span class="tm-chip">PostgreSQL</span>
+    </div>
+</section>
+
+<div class="tm-diagram mb-4">
+    <div class="tm-diagram-node">
+        <span class="tm-diagram-icon">📱</span>
+        <strong>Android</strong>
+        <small>Kotlin + Jetpack Compose</small>
+    </div>
+    <div class="tm-diagram-node">
+        <span class="tm-diagram-icon">🌐</span>
+        <strong>Web</strong>
+        <small>Razor Pages C#</small>
+    </div>
+    <div class="tm-diagram-arrow">➜</div>
+    <div class="tm-diagram-node tm-diagram-center">
+        <span class="tm-diagram-icon">⚙️</span>
+        <strong>TecnoMarket.Api</strong>
+        <small>Auth · REST · Storage · Seguridad</small>
+    </div>
+    <div class="tm-diagram-arrow">➜</div>
+    <div class="tm-diagram-node">
+        <span class="tm-diagram-icon">🗄️</span>
+        <strong>Supabase</strong>
+        <small>PostgreSQL + Auth + Storage</small>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card tm-panel h-100">
+            <div class="card-header">🔐 Un solo punto de seguridad</div>
+            <div class="card-body">
+                <p>El middleware de la API decide quién puede ver o modificar cada ruta: catálogo y categorías son públicos; favoritos, pedidos y publicaciones requieren sesión; aprobar, rechazar y borrar requieren rol <code>administrador</code>.</p>
+                <p class="mb-0">El panel de analística usa vistas <code>dw.*</code> de solo lectura y la recarga del ETL está restringida al admin.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card tm-panel h-100">
+            <div class="card-header">📸 Fotos reales y estados</div>
+            <div class="card-body">
+                <p>Las imágenes se suben al bucket público <code>productos</code> de Supabase Storage. El producto nace <span class="badge bg-warning text-dark">Pendiente</span> y recién aparece en el catálogo cuando el admin lo pasa a <span class="badge bg-success">Disponible</span>.</p>
+                <p class="mb-0">Estados posibles: Pendiente, Disponible, Vendido, Rechazado y Pausado. Todo en córdobas (C$).</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="card tm-panel h-100">
+            <div class="card-header">📊 Data warehouse</div>
+            <div class="card-body">
+                <p>El esquema <code>dw</code> separa las tablas de análisis del mercado operativo. Un trabajo <code>pg_cron</code> lo actualiza todos los días a las 03:00 y el panel <a asp-page="/Admin/Analitica">Analítica</a> lo muestra con gráficos.</p>
+                <p class="mb-0">Ventas por categoría y mes, productos populares, resumen general y bitácora del ETL.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card tm-panel h-100">
+            <div class="card-header">📘 Probar la API en vivo</div>
+            <div class="card-body">
+                <p>Swagger genera la documentación interactiva directamente desde los controladores. Podés ver cada endpoint, los parámetros y ejecutar pruebas pegando un token JWT.</p>
+                <a class="btn btn-success" href="/swagger" target="_blank" rel="noopener">Abrir Swagger UI</a>
+                <a class="btn btn-outline-success" href="/swagger/v1/swagger.json" target="_blank" rel="noopener">Ver JSON</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tm-diagram {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: .75rem;
+    }
+    .tm-diagram-node {
+        flex: 1 1 170px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: .15rem;
+        padding: 1.2rem .8rem;
+        background: #fff;
+        border: 1px solid var(--tm-borde);
+        border-radius: var(--tm-radio);
+        box-shadow: var(--tm-sombra);
+    }
+    .tm-diagram-center {
+        background: linear-gradient(135deg, var(--tm-verde-profundo), var(--tm-verde));
+        border-color: transparent;
+        color: #fff;
+    }
+    .tm-diagram-center strong, .tm-diagram-center small { color: #fff; }
+    .tm-diagram-icon { font-size: 1.7rem; margin-bottom: .25rem; }
+    .tm-diagram-node strong { font-size: .95rem; }
+    .tm-diagram-node small { color: var(--tm-texto-suave); font-size: .74rem; }
+    .tm-diagram-arrow {
+        align-self: center;
+        color: var(--tm-verde);
+        font-size: 1.6rem;
+        font-weight: 800;
+    }
+    @@media (max-width: 767px) {
+        .tm-diagram { flex-direction: column; }
+        .tm-diagram-arrow { transform: rotate(90deg); align-self: center; }
+    }
+</style>

@@ -1,0 +1,129 @@
+﻿@using System.IO
+@using Microsoft.AspNetCore.Hosting
+@using TecnoMarket.Web.Servicios
+@inject ApiCliente Api
+@inject IWebHostEnvironment Env
+@{
+    var pagina = ViewContext.RouteData.Values["page"]?.ToString() ?? "";
+    string Activo(string ruta) => pagina.Equals(ruta, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f8a5f" />
+    <meta name="description" content="TecnoMarket — tecnología, hogar y más. Android y Web conectados a una sola API C#." />
+    <title>@ViewData["Title"] · TecnoMarket</title>
+    <!-- CSS incrustado: el tunel de Cloudflare y la vista previa descartan los CSS externos.
+         Asi el diseno HTML5 siempre se ve, incluso detras de un proxy. -->
+    <style>
+        @Html.Raw(System.IO.File.ReadAllText(System.IO.Path.Combine(Env.WebRootPath, "css", "tm-core.css")))
+        @Html.Raw(System.IO.File.ReadAllText(System.IO.Path.Combine(Env.WebRootPath, "css", "site.css")))
+    </style>
+</head>
+<body>
+    <header class="tm-nav-wrap">
+        <nav class="navbar navbar-expand-lg tm-nav">
+            <div class="container">
+                <a class="tm-brand" asp-area="" asp-page="/Index">
+                    <span class="tm-brand-mark">🛒</span>
+                    <span>TecnoMarket<small>Mercado tecnológico</small></span>
+                </a>
+
+                <button class="navbar-toggler border-0 shadow-none" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#tmMenu"
+                        aria-controls="tmMenu" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="tmMenu">
+                    <div class="navbar-nav ms-auto align-items-lg-center gap-1">
+                        <a class="tm-nav-link @Activo("/Index")" asp-area="" asp-page="/Index">🏬 Catálogo</a>
+                        <a class="tm-nav-link @Activo("/Arquitectura")" asp-area="" asp-page="/Arquitectura">🧩 Arquitectura</a>
+
+                        @if (Api.EsAdmin)
+                        {
+                            <a class="tm-nav-link @Activo("/Admin/Productos")" asp-area="" asp-page="/Admin/Productos">🛠️ Admin</a>
+                            <a class="tm-nav-link @Activo("/Admin/Analitica")" asp-area="" asp-page="/Admin/Analitica">📊 Analítica</a>
+                        }
+
+                        @if (Api.SesionIniciada)
+                        {
+                            <a class="tm-nav-link @Activo("/Favoritos")" asp-area="" asp-page="/Favoritos" title="Favoritos">❤️ Favoritos</a>
+                            <a class="tm-nav-link @Activo("/Carrito")" asp-area="" asp-page="/Carrito" title="Carrito">
+                                🛒 Carrito <span class="tm-nav-count">@Context.Session.Cantidad()</span>
+                            </a>
+                            <a class="tm-nav-link @Activo("/Publicar")" asp-area="" asp-page="/Publicar">📝 Publicar</a>
+                            <a class="tm-nav-link @Activo("/Pedidos")" asp-area="" asp-page="/Pedidos">📦 Pedidos</a>
+                            <a class="tm-nav-link @Activo("/Chat")" asp-area="" asp-page="/Chat">💬 Chat</a>
+                            <span class="tm-nav-divider"></span>
+                            <span class="tm-nav-user" title="@Api.Correo">👤 @Api.Correo</span>
+                            <form asp-page="/Login" asp-page-handler="Salir" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-outline-success">Salir</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="btn btn-sm btn-success ms-lg-2" asp-area="" asp-page="/Login">Iniciar sesión</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container pb-5">
+        @if (TempData["Mensaje"] is string mensajeGlobal)
+        {
+            <div class="alert alert-success tm-fade-in">@mensajeGlobal</div>
+        }
+        @if (TempData["Error"] is string errorGlobal)
+        {
+            <div class="alert alert-warning tm-fade-in">@errorGlobal</div>
+        }
+        <main role="main" class="tm-fade-in">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="tm-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-5">
+                    <span class="tm-footer-brand">🛒 TecnoMarket</span>
+                    <p class="mb-0 small">Un solo mercado, dos formas de entrar: app Android y Web, ambas alimentadas por la misma API C# sobre Supabase.</p>
+                </div>
+                <div class="col-md-3">
+                    <strong class="d-block mb-2">Explorar</strong>
+                    <ul class="tm-list-links small">
+                        <li><a asp-page="/Index">Catálogo</a></li>
+                        <li><a asp-page="/Arquitectura">Arquitectura</a></li>
+                        <li><a asp-page="/Login">Mi cuenta</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <strong class="d-block mb-2">Para el equipo de desarrollo</strong>
+                    <p class="small mb-2">Documentación interactiva de la API generada con Swagger.</p>
+                    <a class="btn btn-sm btn-outline-light" href="/swagger" target="_blank" rel="noopener">📘 Abrir Swagger</a>
+                </div>
+            </div>
+            <div class="tm-footer-bottom">
+                &copy; 2026 TecnoMarket · Precios en C$ (córdobas) · Proyecto académico
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu responsive sin librerias externas.
+        document.addEventListener('click', function (e) {
+            var b = e.target.closest('.navbar-toggler');
+            if (b) {
+                var menu = document.getElementById(b.getAttribute('data-bs-target').replace('#', ''));
+                if (menu) menu.classList.toggle('show');
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -57,3 +57,12 @@
 2026-11-20T21:28:53Z INF Retrying connection in up to 32s connIndex=0 event=0 ip=198.41.192.47
 2026-11-20T21:29:12Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.63
 2026-11-20T21:29:12Z INF Registered tunnel connection connIndex=0 connection=3dc15e5d-c3f4-46b1-a3d7-127036500937 event=0 ip=198.41.200.63 location=mia08 protocol=quic
+2026-11-20T22:30:05Z ERR Serve tunnel error error="datagram manager error: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.63
+2026-11-20T22:30:05Z INF Retrying connection in up to 2s connIndex=0 event=0 ip=198.41.200.63
+2026-11-20T22:30:07Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.192.77
+2026-11-20T22:30:07Z INF Registered tunnel connection connIndex=0 connection=c9f0e2fc-ecdb-4fb8-accf-0152a9bc49ab event=0 ip=198.41.192.77 location=mia01 protocol=quic
+2026-11-20T22:55:58Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-11-20T23:11:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:5000
+2026-11-20T23:11:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://underlying-authentication-wichita-manager.trycloudflare.com/ event=0 ip=198.41.192.77 type=http
+2026-11-20T23:16:03Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-11-20T23:21:08Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"

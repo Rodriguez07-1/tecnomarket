@@ -187,7 +187,7 @@ public sealed class CatalogoRepositorio
     private async Task<List<ProductoItem>> EnriquecerAsync(List<Producto> productos)
     {
         var categorias = await CategoriasAsync();
-        var usuarios = await _rest.ListarAsync<Usuario>("usuarios?select=id,nombre,apellido,rol");
+        var usuarios = await _rest.ListarAsync<Usuario>("usuarios?select=id,nombre,apellido");
         var nombresCategorias = categorias.ToDictionary(c => c.Id, c => c.Nombre);
         var nombresUsuarios = usuarios.ToDictionary(
             u => u.Id,

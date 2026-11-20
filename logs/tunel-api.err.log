@@ -60,3 +60,8 @@
 2026-11-20T21:29:04Z INF Retrying connection in up to 32s connIndex=0 event=0 ip=198.41.200.23
 2026-11-20T21:29:10Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.192.47
 2026-11-20T21:29:10Z INF Registered tunnel connection connIndex=0 connection=79afc011-f1c7-4489-97e0-6be2904e28bd event=0 ip=198.41.192.47 location=mia10 protocol=quic
+2026-11-20T22:30:00Z ERR Serve tunnel error error="accept stream listener error: failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-11-20T22:30:00Z INF Retrying connection in up to 2s connIndex=0 event=0 ip=198.41.192.47
+2026-11-20T22:30:01Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.63
+2026-11-20T22:30:04Z INF Registered tunnel connection connIndex=0 connection=3ae39615-39e4-456e-945e-6fa5843d37e7 event=0 ip=198.41.200.63 location=mia08 protocol=quic
+2026-11-20T22:40:58Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"

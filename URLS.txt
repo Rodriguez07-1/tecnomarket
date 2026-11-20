@@ -1,10 +1,10 @@
-TECNOMARKET EN LA NUBE
+TECNOMARKET EN LA NUBE (Render - plan Free)
 
-API     : https://stomach-salvador-receivers-acc.trycloudflare.com
-SWAGGER : https://stomach-salvador-receivers-acc.trycloudflare.com/swagger
-WEB     : https://underlying-authentication-wichita-manager.trycloudflare.com
-ARQ.    : https://underlying-authentication-wichita-manager.trycloudflare.com/Arquitectura
-CHAT    : https://underlying-authentication-wichita-manager.trycloudflare.com/Chat
+API     : https://tecnomarket-api.onrender.com
+SWAGGER : https://tecnomarket-api.onrender.com/swagger
+WEB     : https://tecnomarket-web.onrender.com
+ARQ.    : https://tecnomarket-web.onrender.com/Arquitectura
+CHAT    : https://tecnomarket-web.onrender.com/Chat
 
 Local:
   API     : http://localhost:5204
@@ -13,15 +13,20 @@ Local:
   Arq.    : http://localhost:5000/Arquitectura
   Chat    : http://localhost:5000/Chat
 
-Nota: las URLs de Cloudflare quick tunnel cambian en cada reinicio.
-Para obtener otras nuevas, ejecutar:
-  powershell -ExecutionPolicy Bypass -File .\iniciar_nube.ps1
+Nota: Render duerme los servicios Free tras ~15 min sin tráfico;
+la primera visita puede tardar ~1 min en despertar. Para la presentación,
+hacer un ping a ambas URLs unos minutos antes.
 
-Si cambian, actualizar:
+Las URLs de Cloudflare quick tunnel ya no son necesarias: la PC puede estar apagada.
+Los túneles antiguos se dejaron vivos solo como respaldo temporal.
+
+Si cambia la URL de la API, actualizar:
   1) app\src\main\java\com\tecnomarket\app\data\ApiConfig.kt  -> API_BASE_URL
   2) src\TecnoMarket.Web\appsettings.json                     -> Api:BaseUrl
+  3) Variable de entorno Api__BaseUrl del servicio Web en Render.
 
-Estado: API y WEB en ejecucion en segundo plano (20/11/2026).
+Estado: API y WEB desplegadas y verificadas en Render (20/11/2026).
 Swagger documenta 29 rutas (incluye /rest/v1/mensajes) y permite probarlas pegando un JWT.
-El CSS se incrusta en el HTML5: el diseño sobrevive al proxy que descarta .css externos.
+El CSS se incrusta en el HTML5: el diseño sobrevive a proxies que descartan .css externos.
 Chat: misma BD (public.mensajes), sin SignalR; Web y Android usan sondeo ligero de 4 s.
+RLS: las políticas tm_*_select_publico exponen solo catálogo, categorías y nombres de vendedores.

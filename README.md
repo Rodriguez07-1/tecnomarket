@@ -28,26 +28,25 @@ La app Android y la página web consumen **la misma API C#**. No hay tablas dupl
 | Modo proxy con clave publishable | ✅ Funciona sin contraseña de BD |
 | Modo Npgsql (lectura/escritura directa) | ⏳ Falta contraseña de BD |
 | Bucket `productos` + políticas RLS | ✅ Creado y verificado |
+| Catálogo público sin login (`anon`) | ✅ Políticas `tm_*_select_publico` aplicadas en Supabase |
 | Data Warehouse `dw` + carga inicial | ✅ C$ 2.100 en ventas, 4 pedidos |
 | ETL diario automático (pg_cron, 03:00 UTC) | ✅ Programado y verificado |
-| Despliegue permanente | ⏳ Sin proveedor elegido (túnel temporal) |
+| Despliegue permanente | ✅ Render (plan Free), API + Web activas sin depender de la PC |
 
-## URLs públicas activas (Cloudflare quick tunnel)
+## URLs públicas activas (Render)
 
-- **API:** https://stomach-salvador-receivers-acc.trycloudflare.com
-- **Swagger:** https://stomach-salvador-receivers-acc.trycloudflare.com/swagger
-- **Web:** https://underlying-authentication-wichita-manager.trycloudflare.com
-- **Arquitectura (dentro de la Web):** https://underlying-authentication-wichita-manager.trycloudflare.com/Arquitectura
+- **API:** https://tecnomarket-api.onrender.com
+- **Swagger:** https://tecnomarket-api.onrender.com/swagger
+- **Web:** https://tecnomarket-web.onrender.com
+- **Arquitectura (dentro de la Web):** https://tecnomarket-web.onrender.com/Arquitectura
+- **Chat (dentro de la Web):** https://tecnomarket-web.onrender.com/Chat
 
-> Son túneles temporales: cambian al reiniciar. Para reiniciar todo y obtener las nuevas URLs:
-> ```powershell
-> powershell -ExecutionPolicy Bypass -File .\iniciar_nube.ps1
-> ```
-> Las URLs también se guardan en `URLS.txt`.
+> Render duerme los servicios Free tras ~15 min sin tráfico; la primera visita tras dormir tarda ~1 min. Para la presentación, hacer ping a ambas URLs unos minutos antes. Las URLs también se guardan en `URLS.txt`.
 
-Si las URLs cambian, actualiza **dos archivos**:
+Si cambia la URL de la API, actualiza:
 1. `app\src\main\java\com\tecnomarket\app\data\ApiConfig.kt` → `API_BASE_URL`
 2. `src\TecnoMarket.Web\appsettings.json` → `Api:BaseUrl`
+3. La variable `Api__BaseUrl` del servicio Web en Render (ver `DEPLOY_RENDER.md`).
 
 ## Cómo funciona la API
 
@@ -81,6 +80,7 @@ La compra crea un registro en `public.pedidos`, descuenta el stock y marca el pr
 - Web: `/Chat` con lista de conversaciones, burbujas y sondeo ligero cada 4 segundos (sin SignalR ni WebSockets, para que funcione tras Cloudflare).
 - Android: pantalla `ChatScreen` + `ChatRepository`, botón **Chat con el vendedor** en el detalle y pestaña **Chat** en la barra inferior.
 - Migración ejecutada: `supabase\migrations\20261120000600_chat_vendedor_cliente.sql`.
+- Migración ejecutada: `supabase\migrations\20261120180000_catalogo_publico_anon.sql` (catálogo visible para visitantes).
 
 ### Diseño Web: por qué ahora se ve siempre
 

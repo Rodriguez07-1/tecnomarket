@@ -1,4 +1,4 @@
-﻿@using System.IO
+@using System.IO
 @using Microsoft.AspNetCore.Hosting
 @using TecnoMarket.Web.Servicios
 @inject ApiCliente Api
@@ -108,6 +108,37 @@
                     <a class="btn btn-sm btn-outline-light" href="/swagger" target="_blank" rel="noopener">📘 Abrir Swagger</a>
                 </div>
             </div>
+            <style>
+                .tm-ayuda { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18); border-radius: 12px; padding: 14px 16px; }
+                .tm-ayuda-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin-bottom: 10px; }
+                .tm-ayuda-head strong { color: #fff; font-size: 1rem; }
+                .tm-ayuda-head span { color: rgba(255,255,255,.65); font-size: .82rem; }
+                .tm-ayuda-form { display: flex; flex-wrap: wrap; gap: 8px; }
+                .tm-ayuda-form input, .tm-ayuda-form textarea { flex: 1 1 180px; min-width: 0; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 8px 10px; background: rgba(255,255,255,.1); color: #fff; font-size: .875rem; resize: vertical; }
+                .tm-ayuda-form input::placeholder, .tm-ayuda-form textarea::placeholder { color: rgba(255,255,255,.55); }
+                .tm-ayuda-form button { border: 0; border-radius: 8px; padding: 8px 20px; background: #0f8a5f; color: #fff; font-weight: 600; cursor: pointer; }
+                .tm-ayuda-form button:hover { background: #0b6e4c; }
+                .tm-ayuda-estado { min-height: 18px; margin-top: 8px; font-size: .82rem; color: rgba(255,255,255,.7); }
+                .tm-ayuda-estado.ok { color: #8ce6b4; }
+                .tm-ayuda-estado.error { color: #ffb3a7; }
+            </style>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="tm-ayuda">
+                        <div class="tm-ayuda-head">
+                            <strong>¿Necesitás ayuda?</strong>
+                            <span>Escribinos y te respondemos</span>
+                        </div>
+                        <form id="tm-ayuda-form" class="tm-ayuda-form">
+                            <input id="tm-ayuda-nombre" type="text" placeholder="Tu nombre" maxlength="80" required />
+                            <input id="tm-ayuda-email" type="email" placeholder="Tu correo" maxlength="120" required />
+                            <textarea id="tm-ayuda-mensaje" placeholder="¿En qué te ayudamos?" maxlength="2000" rows="2" required></textarea>
+                            <button type="submit">Enviar</button>
+                        </form>
+                        <div id="tm-ayuda-estado" class="tm-ayuda-estado"></div>
+                    </div>
+                </div>
+            </div>
             <div class="tm-footer-bottom">
                 &copy; 2026 TecnoMarket · Precios en C$ (córdobas) · Proyecto académico
             </div>
@@ -115,6 +146,11 @@
     </footer>
 
     <script>
+        // Firebase (Firestore) - configuracion publica del proyecto.
+        // Reemplazar con los valores de console.firebase.google.com.
+        var TM_FIREBASE_PROJECT = 'tecnomarket-ayuda-bf3e8';
+        var TM_FIREBASE_APIKEY = 'AIzaSyB9m75QNDZTkx0wIAS-cC_U6YAqm3b1dvg';
+
         // Menu responsive sin librerias externas.
         document.addEventListener('click', function (e) {
             var b = e.target.closest('.navbar-toggler');
@@ -123,6 +159,59 @@
                 if (menu) menu.classList.toggle('show');
             }
         });
+
+        // Formulario de ayuda -> Firestore REST API (sin librerias externas).
+        (function () {
+            var form = document.getElementById('tm-ayuda-form');
+            if (!form) return;
+            var estado = document.getElementById('tm-ayuda-estado');
+            function msg(texto, clase) {
+                estado.textContent = texto;
+                estado.className = 'tm-ayuda-estado ' + (clase || '');
+            }
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var nombre = document.getElementById('tm-ayuda-nombre').value.trim();
+                var email = document.getElementById('tm-ayuda-email').value.trim();
+                var texto = document.getElementById('tm-ayuda-mensaje').value.trim();
+                if (!nombre || !email || !texto) { msg('Completá todos los campos.', 'error'); return; }
+                if (TM_FIREBASE_PROJECT.indexOf('TU_') === 0) {
+                    msg('Falta configurar Firebase (projectId).', 'error'); return;
+                }
+                var btn = form.querySelector('button');
+                btn.disabled = true;
+                msg('Enviando...');
+
+                var url = 'https://firestore.googleapis.com/v1/projects/' +
+                    encodeURIComponent(TM_FIREBASE_PROJECT) +
+                    '/databases/(default)/documents/ayuda?key=' +
+                    encodeURIComponent(TM_FIREBASE_APIKEY);
+                var body = {
+                    fields: {
+                        nombre:   { stringValue: nombre },
+                        email:    { stringValue: email },
+                        mensaje:  { stringValue: texto },
+                        origen:   { stringValue: 'web' },
+                        fecha:    { timestampValue: new Date().toISOString() },
+                        estado:   { stringValue: 'nuevo' }
+                    }
+                };
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    form.reset();
+                    msg('¡Listo! Recibimos tu mensaje.', 'ok');
+                })
+                .catch(function (err) {
+                    msg('No se pudo enviar. Intentá de nuevo. (' + err.message + ')', 'error');
+                })
+                .finally(function () { btn.disabled = false; });
+            });
+        })();
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

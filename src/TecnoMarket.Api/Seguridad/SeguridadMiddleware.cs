@@ -35,7 +35,7 @@ public static class SeguridadMiddleware
 
             context.Items["sesion"] = sesion;
 
-            var admin = RequiereAdmin(ruta, metodo, context.Request.Query);
+            var admin = RequiereAdmin(ruta, metodo, context.Request.Query, sesion);
             if (admin && !sesion.EsAdmin)
             {
                 await Responder(context, HttpStatusCode.Forbidden, "Esta acción es solo para administradores.");
@@ -81,9 +81,16 @@ public static class SeguridadMiddleware
         return ruta == "/rest/v1/productos" && query.ContainsKey("estado");
     }
 
-    private static bool RequiereAdmin(string ruta, string metodo, IQueryCollection query)
+    private static bool RequiereAdmin(string ruta, string metodo, IQueryCollection query, SesionInfo sesion)
     {
-        if (metodo == HttpMethods.Get && ruta == "/rest/v1/usuarios") return true;
+        if (metodo == HttpMethods.Get && ruta == "/rest/v1/usuarios")
+        {
+            // Cada usuario puede consultar su propio perfil (lo hace la app al
+            // iniciar sesión para conocer su rol). El listado completo sigue
+            // siendo exclusivo del administrador.
+            var id = query["id"].ToString();
+            return !(id.StartsWith("eq.", StringComparison.Ordinal) && id[3..] == sesion.Id);
+        }
         // Disparar el ETL es operación de administrador.
         if (ruta.EndsWith("/rpc/ejecutar_etl", StringComparison.Ordinal)) return true;
         // Borrar artículos es solo de admin. Marcar como "Vendido" lo hace
